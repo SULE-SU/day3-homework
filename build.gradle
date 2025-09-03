@@ -12,7 +12,14 @@ repositories {
 }
 
 test {
-    useJUnitPlatform()
+    // gradle
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "failed", "skipped"
+            showStandardStreams = true
+        }
+    }
 }
 
 dependencies {
