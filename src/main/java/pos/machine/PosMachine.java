@@ -5,12 +5,19 @@ import java.util.*;
 public class PosMachine {
 
     public String printReceipt(List<String> barcodes) {
+        List<Item> allItems = ItemsLoader.loadAllItems();
+        Map<String, Item> itemIndex = buildItemIndex(allItems);
 
     }
     // 建立条码索引
     Map<String, Item> buildItemIndex(List<Item> items) {
-
+        Map<String, Item> index = new LinkedHashMap<>();
+        for (Item it : items) {
+            index.put(it.getBarcode(), it);
+        }
+        return index;
     }
+
 
 
     // 统计条码数量
