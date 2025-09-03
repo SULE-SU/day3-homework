@@ -83,6 +83,10 @@ public class PosMachine {
 
     // 格式化单行
     String formatReceiptLine(ReceiptItem it) {
-
+        return "Name: " + it.getName() +
+                ", Quantity: " + it.getQuantity() +
+                ", Unit price: " + it.getUnitPrice() + " (yuan)" +
+                ", Subtotal: " + it.getSubtotal() + " (yuan)";
     }
+
 }
