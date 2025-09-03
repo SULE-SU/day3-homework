@@ -10,6 +10,8 @@ public class PosMachine {
 
         validateBarcodes(barcodes, itemIndex);
 
+        Map<String, Integer> counts = countBarcodes(barcodes);
+
     }
     // 建立条码索引
     Map<String, Item> buildItemIndex(List<Item> items) {
@@ -24,7 +26,13 @@ public class PosMachine {
 
     // 统计条码数量
     Map<String, Integer> countBarcodes(List<String> barcodes) {
+        Map<String, Integer> counts = new LinkedHashMap<>();
+        for (String code : barcodes) {
+            counts.put(code, counts.getOrDefault(code, 0) + 1);
+        }
+        return counts;
     }
+
 
     // 小票条目
     List<ReceiptItem> createReceiptItems(Map<String, Integer> counts, Map<String, Item> itemIndex) {
