@@ -11,6 +11,7 @@ public class PosMachine {
         validateBarcodes(barcodes, itemIndex);
 
         Map<String, Integer> counts = countBarcodes(barcodes);
+        List<ReceiptItem> receiptItems = createReceiptItems(counts, itemIndex);
 
     }
     // 建立条码索引
@@ -36,7 +37,16 @@ public class PosMachine {
 
     // 小票条目
     List<ReceiptItem> createReceiptItems(Map<String, Integer> counts, Map<String, Item> itemIndex) {
+        List<ReceiptItem> lines = new ArrayList<>();
+        Set<String> keys = counts.keySet();
 
+        for (String code : keys) {
+            Integer qty = counts.get(code);
+            Item item = itemIndex.get(code);
+            lines.add(new ReceiptItem(item, qty));
+        }
+
+        return lines;
     }
 
     // 校验条码
