@@ -8,6 +8,8 @@ public class PosMachine {
         List<Item> allItems = ItemsLoader.loadAllItems();
         Map<String, Item> itemIndex = buildItemIndex(allItems);
 
+        validateBarcodes(barcodes, itemIndex);
+
     }
     // 建立条码索引
     Map<String, Item> buildItemIndex(List<Item> items) {
@@ -31,7 +33,11 @@ public class PosMachine {
 
     // 校验条码
     void validateBarcodes(List<String> barcodes, Map<String, Item> itemIndex) {
-
+        for (String code : barcodes) {
+            if (!itemIndex.containsKey(code)) {
+                throw new IllegalArgumentException("Unknown barcode: " + code);
+            }
+        }
     }
 
     // 计算总价
