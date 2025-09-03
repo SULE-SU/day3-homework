@@ -15,7 +15,10 @@ public class PosMachine {
 
         return formatReceipt(receiptItems);
     }
-    // 建立条码索引
+    // 将商品列表索引为 Map，为什么不用findItemByBarcode原因是当商品数量很大的时候，会反复遍历列表，耗时很长
+    // 如果购物车有10件商品，需要查找10次
+    // 每次查找最多需要遍历1000个商品
+    // 最大查找总次数：10,000次
     Map<String, Item> buildItemIndex(List<Item> items) {
         Map<String, Item> index = new LinkedHashMap<>();
         for (Item it : items) {
@@ -23,7 +26,14 @@ public class PosMachine {
         }
         return index;
     }
-
+    //    Item findItemByBarcode(List<Item> allItems, String barcode) {
+//        for (Item item : allItems) {
+//            if (item.getBarcode().equals(barcode)) {
+//                return item;
+//            }
+//        }
+//        return null;
+//    }
 
 
     // 统计条码数量
