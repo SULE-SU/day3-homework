@@ -61,7 +61,11 @@ public class PosMachine {
 
     // 计算总价
     int calculateTotal(List<ReceiptItem> items) {
-
+        int total = 0;
+        for (ReceiptItem it : items) {
+            total += it.getSubtotal();
+        }
+        return total;
     }
 
     // 格式化整张小票
