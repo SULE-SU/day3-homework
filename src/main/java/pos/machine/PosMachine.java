@@ -13,6 +13,7 @@ public class PosMachine {
         Map<String, Integer> counts = countBarcodes(barcodes);
         List<ReceiptItem> receiptItems = createReceiptItems(counts, itemIndex);
 
+        return formatReceipt(receiptItems);
     }
     // 建立条码索引
     Map<String, Item> buildItemIndex(List<Item> items) {
@@ -65,7 +66,15 @@ public class PosMachine {
 
     // 格式化整张小票
     String formatReceipt(List<ReceiptItem> items) {
-
+        StringBuilder sb = new StringBuilder();
+        sb.append("***<store earning no money>Receipt***\n");
+        for (ReceiptItem it : items) {
+            sb.append(formatReceiptLine(it)).append("\n");
+        }
+        sb.append("----------------------\n");
+        sb.append("Total: ").append(calculateTotal(items)).append(" (yuan)\n");
+        sb.append("**********************");
+        return sb.toString();
     }
 
     // 格式化单行
