@@ -26,14 +26,7 @@ public class PosMachine {
         }
         return index;
     }
-    //    Item findItemByBarcode(List<Item> allItems, String barcode) {
-//        for (Item item : allItems) {
-//            if (item.getBarcode().equals(barcode)) {
-//                return item;
-//            }
-//        }
-//        return null;
-//    }
+
 
 
     // 统计条码数量
